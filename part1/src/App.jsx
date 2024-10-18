@@ -3,22 +3,23 @@ import {useState} from 'react'
 const App = (props) => {
 
   const [counter, setCounter] = useState(0)
+  console.log('rendering with counter value', counter)
 
-  const increment = () => setCounter(counter+1)
-  const setToZero = () => setCounter(0)
-  const decrement = () => setCounter(counter-1)
+  const increment = () => {
+    console.log('increasing, value before ', counter)
+    setCounter(counter+1)}
 
-  const Display = (props) => {
-    return (<>{props.counter}</>)
-  }
+  const setToZero = () => {
+    console.log('zeroing, value before ',counter)
+    setCounter(0)}
+  const decrement = () => {
+    console.log('decreasing, value before ', counter)
+    setCounter(counter-1)}
 
-  const Button = (props) => {
-    return (
-      <button onClick={props.onClick}>
-        {props.text}
-      </button>
-    )
-  }
+  const Display = ({counter}) => <>{counter}</>
+
+  const Button = ({onClick, text}) => <button onClick={onClick}> {text} </button>
+  
 
 return (
   <>
