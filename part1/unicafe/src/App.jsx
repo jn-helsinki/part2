@@ -27,7 +27,7 @@ const App = () => {
     setScore(score-1)
     setTotal(total+1)
   }
-
+if(total>0){
   return (<>
     <h1>give feedback</h1>
     <div>
@@ -43,6 +43,19 @@ const App = () => {
       <Statistic name="all" calculation={total} />
       <Statistic name="average" calculation={score/total} />
       <Statistic name="positive" calculation={good/total*100 + "%"} />
+    </div>
+    </>)
+}
+  return (<>
+    <h1>give feedback</h1>
+    <div>
+    <button onClick = {handleGoodClick}>good</button>
+    <button onClick = {handleNeutralClick}>neutral</button>
+    <button onClick = {handleBadClick}>bad</button>
+    </div>
+    <h1>statistics</h1>
+    <div>
+      No feedback given
     </div>
     </>
   )
