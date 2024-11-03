@@ -1,6 +1,21 @@
 import { useState } from 'react'
 
-const Statistic = ({name, calculation}) => {
+const Button = ({name, handleClick}) => {
+  return (<button onClick={handleClick}>{name}</button>)
+}
+
+const Statistics = ({array}) => {
+  return (<div>
+  <StatisticLine name="good" calculation={array[0]} />
+  <StatisticLine name="neutral" calculation={array[1]} />
+  <StatisticLine name="bad" calculation={array[2]} />
+  <StatisticLine name="all" calculation={array[3]} />
+  <StatisticLine name="average" calculation={array[4]/array[3]} />
+  <StatisticLine name="positive" calculation={array[0]/array[3]*100 + "%"} />
+</div>)
+}
+
+const StatisticLine = ({name, calculation}) => {
   return (<div>{name} {calculation}</div>)
 }
 
@@ -31,27 +46,20 @@ if(total>0){
   return (<>
     <h1>give feedback</h1>
     <div>
-    <button onClick = {handleGoodClick}>good</button>
-    <button onClick = {handleNeutralClick}>neutral</button>
-    <button onClick = {handleBadClick}>bad</button>
+      <Button name="good" handleClick={handleGoodClick}/>
+      <Button name="neutral" handleClick={handleNeutralClick}/>
+      <Button name="bad" handleClick={handleBadClick}/>
     </div>
     <h1>statistics</h1>
-    <div>
-      <Statistic name="good" calculation={good} />
-      <Statistic name="neutral" calculation={neutral} />
-      <Statistic name="bad" calculation={bad} />
-      <Statistic name="all" calculation={total} />
-      <Statistic name="average" calculation={score/total} />
-      <Statistic name="positive" calculation={good/total*100 + "%"} />
-    </div>
+    <Statistics array={[good, neutral, bad, total, score]} />
     </>)
 }
   return (<>
     <h1>give feedback</h1>
     <div>
-    <button onClick = {handleGoodClick}>good</button>
-    <button onClick = {handleNeutralClick}>neutral</button>
-    <button onClick = {handleBadClick}>bad</button>
+      <Button name="good" handleClick={handleGoodClick}/>
+      <Button name="neutral" handleClick={handleNeutralClick}/>
+      <Button name="bad" handleClick={handleBadClick}/>
     </div>
     <h1>statistics</h1>
     <div>
