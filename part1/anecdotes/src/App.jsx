@@ -23,7 +23,12 @@ const App = () => {
   const [counts, setCounts] = useState(Array(anecdotes.length).fill(0))
   let countsCopy = []
 
-  const handleClick = () => setSelected(Math.floor(Math.random()*anecdotes.length))
+  const handleClick = () => {
+    let r = selected
+    while (r===selected){
+      r = Math.floor(Math.random()*anecdotes.length)
+    }
+    setSelected(r)}
 
   const handleVoteClick = () => {
     countsCopy = [...counts]
