@@ -21,6 +21,7 @@ const App = () => {
    
   const [selected, setSelected] = useState(0)
   const [counts, setCounts] = useState(Array(anecdotes.length).fill(0))
+  const [indexMax, setIndexMax] = useState(0)
   let countsCopy = []
 
   const handleClick = () => {
@@ -33,18 +34,25 @@ const App = () => {
   const handleVoteClick = () => {
     countsCopy = [...counts]
     countsCopy[selected] += 1
-    // console.log(countsCopy)
+    if (countsCopy[selected] > counts[indexMax]) {
+      setIndexMax(selected)
+    }
+ 
     setCounts(countsCopy)
-    console.log("Counts copy ", countsCopy)
-    console.log("Counts ", counts)
+
   }
 
   return (
     <div>
+      <div><h1>Anecdote of the day</h1>
       <Display anecdotes={anecdotes} selected={selected} />
       Has {counts[selected]} votes
       <div><button onClick={handleClick}>next anecdote</button>
-      <button onClick={handleVoteClick}>vote</button></div>
+      <button onClick={handleVoteClick}>vote</button></div></div>
+      <div><h1>Anecdote with most votes</h1>
+      <div>{anecdotes[indexMax]}</div> <div>has {counts[indexMax]} votes</div></div>
+      
+
       
     </div>
   )
