@@ -17,17 +17,30 @@ const App = () => {
     'The only way to go fast, is to go well.'
   ]
 
-  a = Array(anecdotes.length).fill(0)
+  // const counts = Array(anecdotes.lengtanecdotes.length).fill(0)h).fill(0)
    
   const [selected, setSelected] = useState(0)
-
+  const [counts, setCounts] = useState(Array(anecdotes.length).fill(0))
+  let countsCopy = []
 
   const handleClick = () => setSelected(Math.floor(Math.random()*anecdotes.length))
+
+  const handleVoteClick = () => {
+    countsCopy = [...counts]
+    countsCopy[selected] += 1
+    // console.log(countsCopy)
+    setCounts(countsCopy)
+    console.log("Counts copy ", countsCopy)
+    console.log("Counts ", counts)
+  }
 
   return (
     <div>
       <Display anecdotes={anecdotes} selected={selected} />
-      <button onClick={handleClick}>next anecdote</button>
+      Has {counts[selected]} votes
+      <div><button onClick={handleClick}>next anecdote</button>
+      <button onClick={handleVoteClick}>vote</button></div>
+      
     </div>
   )
 }
