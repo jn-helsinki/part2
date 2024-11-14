@@ -26,11 +26,18 @@ const Content = ({ parts }) =>
 //     />      
 //   </>
 
-  const Course = ({course}) =>
-    <>
+const Course = ({course}) => {
+
+
+    const s = course.parts.reduce((running_sum, part)=> running_sum+=part.exercises
+    ,0)
+    return (<>
     <Header course={course.name} />
     <Content parts ={course.parts} />
+    <Total sum={s} />
     </>
+    )
+  }
 
 const App = () => {
   const course = {
