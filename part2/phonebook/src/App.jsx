@@ -10,7 +10,7 @@ const addName = (event) => {
   event.preventDefault()
   console.log('button clicked', event.target)
   console.log(event.target.value)
-  setPersons(persons.concat({name:event.target.value}))
+  setPersons(persons.concat({name:newName}))
   setNewName('')
 }
 
@@ -23,7 +23,7 @@ const handleNameChange = (event) => {
 return (
   <div>
     <h2>Phonebook</h2>
-    <form onSubmit={addName}>
+    <form onSubmit={addName} >
       <div>
         name: 
         <input 
@@ -36,7 +36,7 @@ return (
       </div>
     </form>
     <h2>Numbers</h2>
-    <div><ul>{persons.map(person => <li id={person.value}>{person.value}</li>)}</ul></div>
+    <div><ul>{persons.map(person => <li key={person.name}>{person.name}</li>)}</ul></div>
   </div>
 )
 }
