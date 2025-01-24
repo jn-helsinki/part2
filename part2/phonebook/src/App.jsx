@@ -9,8 +9,16 @@ const [newName, setNewName] = useState('')
 const addName = (event) => {
   event.preventDefault()
   console.log('button clicked', event.target)
-  console.log(event.target.value)
-  setPersons(persons.concat({name:newName}))
+
+  if (persons.every(person=> person.name.toLowerCase() !== newName.toLowerCase())){
+    setPersons(persons.concat({name:newName}))
+  }
+
+  else {
+    alert(`Sorry, ${newName} is already in the phonebook.`)
+  }
+
+
   setNewName('')
 }
 
@@ -26,7 +34,7 @@ return (
     <form onSubmit={addName} >
       <div>
         name: 
-        <input 
+        <input
         value={newName} 
         onChange={handleNameChange}
         />
